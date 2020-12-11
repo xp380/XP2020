@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Layout, Menu } from 'antd';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import {DesktopOutlined,PieChartOutlined,FileOutlined,} from '@ant-design/icons';
@@ -8,6 +8,13 @@ import  Forum  from './components/Forum';
 
 const { Header, Content, Footer, Sider } = Layout;
 
+
+// export default function App(){
+//   const [collapsed, setCollapsed] = useState('false')
+//   const onCollapse(() => {
+
+//   }) 
+// }
 class App extends React.Component {
   state = {
     collapsed: false,
