@@ -13,9 +13,9 @@ import Pollution from './pictures/Pollution.png'
 import Pollution2 from './pictures/Pollution2.png'
 
 
-import Area from './Area'
-import Radar from './Radar'
-import Pie from './Pie'
+import Area from './Chart/Area'
+import Radar from './Chart/Radar'
+import Pie from './Chart/Pie'
 
 const { TabPane } = Tabs;
 
