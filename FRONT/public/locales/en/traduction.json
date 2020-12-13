@@ -1,0 +1,11 @@
+{
+    "title": "Welcome {{ name }}",
+    "who": "Who am i ?",
+    "Way": "My way",
+    "CV": "CV",
+    "me": "it's me",
+    "forum": "Room of discussion",
+    "footer": "This is the website created by the great Vincent",
+    "data": "Stats",
+    "projets": "Projects"
+}
