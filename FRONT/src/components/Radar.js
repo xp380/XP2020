@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactApexChart from "react-apexcharts";
 
-class Chart extends React.Component {
+class Radar extends React.Component {
     constructor(props) {
       super(props);
 
@@ -17,7 +17,7 @@ class Chart extends React.Component {
             type: 'radar',
           },
           title: {
-            text: 'Basic Radar Chart'
+            text: 'Skills Presentation'
           },
           xaxis: {
             categories: ['Games', 'Fight', 'Tech', 'Relationship', 'Willpower', 'Intelligence']
@@ -34,4 +34,4 @@ class Chart extends React.Component {
     }
   }
 
-  export default Chart
+  export default Radar

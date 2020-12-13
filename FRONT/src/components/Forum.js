@@ -4,7 +4,7 @@ import english from './english.png'
 import france from './france.png'
 
 function Welcome() {
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation('traduction');
   
     function changeToEnglish() {
       i18n.changeLanguage("en");

@@ -25,7 +25,7 @@ class App extends React.Component {
     this.setState({ collapsed });
   };
 
-  
+    
   render() {
     const { collapsed } = this.state;
 
@@ -48,7 +48,7 @@ class App extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Header className="site-layout-background" style={{ padding: 0, textAlign: 'center', color: "white" }}> this</Header>
           <Content style={{ margin: '0 16px' }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
             <Switch>
