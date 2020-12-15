@@ -2,20 +2,20 @@ import React, {Suspense} from 'react'
 import { Tabs, Carousel } from 'antd';
 import { useTranslation } from "react-i18next";
 
-import avatar from './avatar-gratuit.png'
-import english from './english.png'
-import france from './france.png'
+import avatar from './pictures/avatar-gratuit.png'
+import english from './pictures/english.png'
+import france from './pictures/france.png'
 
-import WildCircus from'./WildCircus.png'
-import WildCircus2 from'./WildCircus2.png'
-import WildCircus3 from'./WildCircus3.png'
-import Pollution from './Pollution.png'
-import Pollution2 from './Pollution2.png'
+import WildCircus from './pictures/WildCircus.png'
+import WildCircus2 from './pictures/WildCircus2.png'
+import WildCircus3 from './pictures/WildCircus3.png'
+import Pollution from './pictures/Pollution.png'
+import Pollution2 from './pictures/Pollution2.png'
 
 
-import Area from './Area'
-import Radar from './Radar'
-import Pie from './Pie'
+import Area from './Chart/Area'
+import Radar from './Chart/Radar'
+import Pie from './Chart/Pie'
 
 const { TabPane } = Tabs;
 

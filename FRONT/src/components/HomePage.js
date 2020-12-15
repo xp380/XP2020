@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import { useTranslation } from "react-i18next";
-import english from './english.png'
-import france from './france.png'
+
+import english from './pictures/english.png'
+import france from './pictures/france.png'
 
 function Welcome() {
   const { t, i18n } = useTranslation(['traduction']);
