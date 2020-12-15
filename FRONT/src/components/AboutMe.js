@@ -3,8 +3,7 @@ import { Tabs, Carousel } from 'antd';
 import { useTranslation } from "react-i18next";
 
 import avatar from './pictures/avatar-gratuit.png'
-import english from './pictures/english.png'
-import france from './pictures/france.png'
+
 
 import WildCircus from './pictures/WildCircus.png'
 import WildCircus2 from './pictures/WildCircus2.png'
