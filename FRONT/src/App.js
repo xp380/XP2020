@@ -11,6 +11,7 @@ import Forum from './components/Forum';
 import News from './components/News'
 import Contact from './components/Contact'
 import MiniGame from './components/MiniGame'
+import Movies from './components/Movies'
 
 import english from './components/pictures/english.png'
 import france from './components/pictures/france.png'
@@ -63,6 +64,9 @@ function DashBoard() {
             <Menu.Item key="6" icon={<GiftOutlined />}>
               <Link to="/minigame">{t('Game')}</Link>
             </Menu.Item>
+            <Menu.Item key="7" icon={<GiftOutlined />}>
+              <Link to="/movies">Films</Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -79,6 +83,7 @@ function DashBoard() {
                 <Route path="/news" component={News} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/minigame" component={MiniGame} />
+                <Route path="/movies" component={Movies} />
               </Switch>
             </div>
           </Content>
