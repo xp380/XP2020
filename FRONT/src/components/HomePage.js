@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import { useTranslation } from "react-i18next";
 
 import Weather from './Weather/Weather'
-import Pollution from './Pollution/Pollution'
+import Covid from './Corona/Covid'
 
 function Welcome() {
   const { t } = useTranslation(['traduction']);
@@ -15,7 +15,7 @@ function Welcome() {
           }}
         />
         <Weather />
-        <Pollution />
+        <Covid />
       </header>
     </div>
   );

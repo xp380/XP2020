@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Pollution() {
+export default function Covid() {
 
-    useEffect(() => {
-        fetch('https://api.waqi.info/feed/paris/?token=dc9894cd6eeb6308a58fc373453687f6a62f761a ')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-    }, [])
+    // useEffect(() => {
+    //     fetch('https://api.waqi.info/feed/paris/?token=dc9894cd6eeb6308a58fc373453687f6a62f761a ')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //         })
+    // }, [])
     return (
         <>
 
