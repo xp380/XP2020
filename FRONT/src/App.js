@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import HomePage from './components/HomePage'
 import AboutMe from './components/AboutMe';
-import Forum from './components/Forum';
+import Gallery from './components/Gallery';
 import News from './components/News'
 import Contact from './components/Contact'
 import MiniGame from './components/MiniGame'
@@ -55,7 +55,7 @@ function DashBoard() {
               <Link to="/aboutMe">{t('About')}</Link>
             </Menu.Item>
             <Menu.Item key="3" icon={<FileOutlined />}>
-              <Link to="/forum">{t('Forum')}</Link>
+              <Link to="/gallery">{t('Gallerie')}</Link>
             </Menu.Item>
             <Menu.Item key="4" icon={<FileOutlined />}>
               <Link to="/news">{t('News')}</Link>
@@ -87,7 +87,7 @@ function DashBoard() {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/aboutMe" component={AboutMe} />
-                <Route path="/forum" component={Forum} />
+                <Route path="/gallery" component={Gallery} />
                 <Route path="/news" component={News} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/minigame" component={MiniGame} />
