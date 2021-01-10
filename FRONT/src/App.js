@@ -14,6 +14,7 @@ import MiniGame from './components/MiniGame'
 import Movies from './components/Movies'
 import Join from './components/Socket/Join/Join'
 import Chat from './components/Socket/Chat/Chat'
+import Time from './components/Time'
 
 import english from './components/pictures/english.png'
 import france from './components/pictures/france.png'
@@ -25,10 +26,11 @@ const { Header, Content, Footer, Sider } = Layout;
 
 function DashBoard() {
   const [collapsed, setCollapsed] = useState(false)
-  const onCollapse = collapsed => {
-    console.log(collapsed);
-    setCollapsed({ collapsed });
-  };
+  const [useTime] = useState(new Date())
+  // const onCollapse = collapsed => {
+  //   console.log(collapsed);
+  //   setCollapsed({ collapsed });
+  // };
 
   const { t, i18n } = useTranslation('Accueil');
 
@@ -43,7 +45,7 @@ function DashBoard() {
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
           <img src={logo} style={{ width: 70, height: 60 }} alt="logo" />
 
           <div className="logo" />
@@ -79,6 +81,7 @@ function DashBoard() {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0, textAlign: 'right', color: "white" }}>
+            <p style={{ padding: 0, textAlign: 'left'}}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p>
             <button onClick={changeToEnglish}><img src={english} style={{ width: 40, height: 40 }} alt="logo" /></button>
             <button onClick={changeToFrench}><img src={france} style={{ width: 40, height: 40 }} alt="logo" /></button>
           </Header>
@@ -95,9 +98,10 @@ function DashBoard() {
                 <Route path="/join" component={Join} />
                 <Route path="/chat" component={Chat} />
               </Switch>
+              <Time />
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>This is the website designed by the great Vincent Kouoï</Footer>
+          <Footer style={{ textAlign: 'center', fontWeight: 'bold' }}>XP3000 designed by Vincent Kouoï</Footer>
         </Layout>
       </Layout>
     </Router>

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Tabs, Carousel } from 'antd';
+import { Tabs, Carousel, Timeline } from 'antd';
 import { useTranslation } from "react-i18next";
 
 import avatar from './pictures/avatar-gratuit.png'
@@ -43,10 +43,17 @@ function Welcome() {
         </TabPane>
         <TabPane tab={t('Way')} key="2">
           {t('Me:parcours')}
+          <Timeline>
+            <Timeline.Item> Bac ES 2014</Timeline.Item>
+            <Timeline.Item> Etudes de Comptabilités 2014-2018</Timeline.Item>
+            <Timeline.Item> Formation de dev web 09/2019-02/2020</Timeline.Item>
+            <Timeline.Item>Stage de 6 mois chez Energie Demain 02/2020-08/2020</Timeline.Item>
+            <Timeline.Item>Actuellement alternant chez Greenvillage 09.2020-10/2021</Timeline.Item>
+          </Timeline>
         </TabPane>
         <TabPane tab={t('data')} key="3">
-          <Radar></Radar>
           <Pie></Pie>
+          <Radar></Radar>
           <Area></Area>
         </TabPane>
         <TabPane tab={t('projets')} key="4">
@@ -80,4 +87,3 @@ export default function AboutMe() {
 }
 
 
-//Utiliser Timeline de Antd

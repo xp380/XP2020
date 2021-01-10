@@ -9,7 +9,7 @@ class Weather extends React.Component {
     render() {
         return (
             <div className="App">
-                <Typography variant='h4'>Météo
+                <Typography variant='h4'>Météo à Paris
         </Typography>
                 <LocationContextProvider>
                     <CurrentWeatherContextProvider>

@@ -9,15 +9,11 @@ class Radar extends React.Component {
       
         series: [{
           name: 'Series 1',
-          data: [80, 30, 60, 30, 100, 60],
+          data: [80, 50, 60, 70, 100, 60],
         }],
         options: {
-          chart: {
-            height: 350,
-            type: 'radar',
-          },
           title: {
-            text: 'Skills Presentation'
+            text: 'Présentation des compétences'
           },
           xaxis: {
             categories: ['Games', 'Fight', 'Tech', 'Relationship', 'Willpower', 'Intelligence']
@@ -28,7 +24,7 @@ class Radar extends React.Component {
     render() {
       return (
   <div id="chart">
-<ReactApexChart options={this.state.options} series={this.state.series} type="radar" height={350} />
+<ReactApexChart options={this.state.options} series={this.state.series} type="radar" height={350} width={300} />
 </div>
       );
     }

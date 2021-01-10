@@ -9,9 +9,8 @@ export default class Pie extends React.Component {
       
         series: [30, 30, 5, 30, 5],
         options: {
-          chart: {
-            width: 380,
-            type: 'pie',
+          title: {
+            text: "Présentation de Personnalité"
           },
           labels: ['Sang-froid', 'Professionnel', 'Immature', 'Sérieux', 'Blagueur'],
           responsive: [{
