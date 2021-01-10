@@ -12,8 +12,8 @@ import News from './components/News'
 import Contact from './components/Contact'
 import MiniGame from './components/MiniGame'
 import Movies from './components/Movies'
-import Join from './components/Socket/Join/Join'
-import Chat from './components/Socket/Chat/Chat'
+import Space from "./components/Socket/Home/Space"
+import Chat from "./components/Socket/Chat/Chat"
 import Time from './components/Time'
 
 import english from './components/pictures/english.png'
@@ -72,10 +72,10 @@ function DashBoard() {
               <Link to="/movies">Films</Link>
             </Menu.Item>
             <Menu.Item key="8" icon={<GiftOutlined />}>
-              <Link to="/join">Join</Link>
+              <Link to='/:roomId'>Room</Link>
             </Menu.Item>
             <Menu.Item key="9" icon={<GiftOutlined />}>
-              <Link to="/chat">Chat</Link>
+            <Link to='/chat'>Chat</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -95,8 +95,8 @@ function DashBoard() {
                 <Route path="/contact" component={Contact} />
                 <Route path="/minigame" component={MiniGame} />
                 <Route path="/movies" component={Movies} />
-                <Route path="/join" component={Join} />
-                <Route path="/chat" component={Chat} />
+                <Route exact path="/chat" component={Space} />
+                <Route exact path="/room/:roomId" component={Chat} />
               </Switch>
               <Time />
             </div>

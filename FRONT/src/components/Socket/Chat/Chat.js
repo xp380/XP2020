@@ -1,70 +1,49 @@
-import React, { useState, useEffect } from "react";
-import queryString from 'query-string';
-import io from "socket.io-client";
+import React from "react";
 
+import "./Chat.css";
+import useChat from "../useChat";
 
-import { InfoBar } from '../InfoBar/InfoBar';
-import { Input } from '../Input/Input';
-import { Messages } from '../Messages/Messages';
-import { TextContainer } from '../TextContainer/TextContainer'
+const ChatRoom = (props) => {
+    const { roomId } = props.match.params;
+    const { messages, sendMessage } = useChat(roomId);
+    const [newMessage, setNewMessage] = React.useState("");
 
-import './Chat.css';
+    const handleNewMessageChange = (event) => {
+        setNewMessage(event.target.value);
+    };
 
-let socket;
-
-export const Chat = ({ location }) => {
-    const [name, setName] = useState('');
-    const [room, setRoom] = useState('');
-    const [users, setUsers] = useState('');
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'https://localhost:4000/';
-
-
-    useEffect(() => {
-        const { name, room } = queryString.parse(location.search);
-
-        socket = io(ENDPOINT);
-
-        setRoom(room);
-        setName(name)
-
-        socket.emit('join', { name, room }, (error) => {
-            if (error) {
-                alert(error);
-            }
-        });
-    }, [ENDPOINT, location.search]);
-
-    useEffect(() => {
-        socket.on('message', message => {
-            setMessages(msgs => [...msgs, message]);
-        });
-
-        socket.on("roomData", ({ users }) => {
-            setUsers(users);
-        });
-    }, []);
-
-    const sendMessage = (event) => {
-        event.preventDefault();
-
-        if (message) {
-            socket.emit('sendMessage', message, () => setMessage(''));
-        }
-    }
-
+    const handleSendMessage = () => {
+        sendMessage(newMessage);
+        setNewMessage("");
+    };
 
     return (
-        <div className="outerContainer">
-            <TextContainer users={users} />
-            <div className="container">
-                <InfoBar room={room} />
-                <Messages messages={messages} name={name} />
-                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        <div className="chat-room-container">
+            <h1 className="room-name">Room: {roomId}</h1>
+            <div className="messages-container">
+                <ol className="messages-list">
+                    {messages.map((message, i) => (
+                        <li
+                            key={i}
+                            className={`message-item ${message.ownedByCurrentUser ? "my-message" : "received-message"
+                                }`}
+                        >
+                            {message.body}
+                        </li>
+                    ))}
+                </ol>
             </div>
+            <textarea
+                value={newMessage}
+                onChange={handleNewMessageChange}
+                placeholder="Write message..."
+                className="new-message-input-field"
+            />
+            <button onClick={handleSendMessage} className="send-message-button">
+                Send
+      </button>
         </div>
     );
-}
+};
 
-export default Chat
+export default ChatRoom;
