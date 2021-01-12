@@ -15,13 +15,13 @@ export default function Covid() {
         statistiques du Covid à Paris
             {data.allDataByDepartement.map(item => (
                 <ul>
-                <li key={item.code}>
-                    <div>Date:{item.date}</div>
-                    <div>Décès:{item.deces}</div>
-                    <div>Guéris:{item.gueris}</div>
-                    <div>Hospitalisés:{item.hospitalises}</div>
-                    <div>Réanimation:{item.reanimation}</div>
-                </li>
+                <tr key={item.code}>
+                    <td>Date:{item.date}</td>
+                    <td>Décès:{item.deces}</td>
+                    <td>Guéris:{item.gueris}</td>
+                    <td>Hospitalisés:{item.hospitalises}</td>
+                    <td>Réanimation:{item.reanimation}</td>
+                </tr>
                 </ul>
             ))}
         </>
