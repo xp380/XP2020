@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
+import { Statistic ,Row, Col} from 'antd'
 
 export default function Covid() {
     const [data, setData] = useState({ allDataByDepartement: []})
@@ -13,16 +14,24 @@ export default function Covid() {
     return (
         <>
         statistiques du Covid à Paris
-            {data.allDataByDepartement.map(item => (
-                <ul>
-                <tr key={item.code}>
-                    <td>Date:{item.date}</td>
-                    <td>Décès:{item.deces}</td>
-                    <td>Guéris:{item.gueris}</td>
-                    <td>Hospitalisés:{item.hospitalises}</td>
-                    <td>Réanimation:{item.reanimation}</td>
-                </tr>
-                </ul>
+    {data.allDataByDepartement.map(item => (
+                <Row gutter={13}>
+                <Col span={4}>
+                  <Statistic title="Date" value={item.date}  />
+                </Col>
+                <Col span={5}>
+                  <Statistic title="Décès" value={item.deces} />
+                </Col>
+                <Col span={5}>
+                  <Statistic title="Guéris" value={item.gueris} />
+                </Col>
+                <Col span={5}>
+                  <Statistic title="Hospitalisés" value={item.hospitalises} />
+                </Col>
+                <Col span={5}>
+                  <Statistic title="Réanimation" value={item.reanimation} />
+                </Col>
+              </Row>
             ))}
         </>
     )
