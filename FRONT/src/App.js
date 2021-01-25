@@ -77,7 +77,7 @@ function DashBoard() {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0, textAlign: 'right', color: "white" }}>
-            <p style={{ padding: 0, textAlign: 'left'}}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p>
+            <p style={{ padding: 0, textAlign: 'left' }}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p>
             <button onClick={changeToEnglish}><img src={english} style={{ width: 40, height: 40 }} alt="logo" /></button>
             <button onClick={changeToFrench}><img src={france} style={{ width: 40, height: 40 }} alt="logo" /></button>
           </Header>
@@ -108,58 +108,3 @@ export default function App() {
   return <Suspense fallback="Chargement ..."><DashBoard />
   </Suspense>
 }
-// class App extends React.Component {
-//   state = {
-//     collapsed: false,
-//   };
-
-  // onCollapse = collapsed => {
-  //   console.log(collapsed);
-  //   this.setState({ collapsed });
-  // };
-
-//   render() {
-//     const { collapsed } = this.state;
-
-
-//     return (
-//       <Router>
-//         <Layout style={{ minHeight: '100vh' }}>
-//           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-//             <div className="logo" />
-//             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-//               <Menu.Item key="1" icon={<PieChartOutlined />}>
-//                 <Link to="/">Home</Link>
-//               </Menu.Item>
-//               <Menu.Item key="2" icon={<DesktopOutlined />}>
-//                 <Link to="/aboutMe">About ME</Link>
-//               </Menu.Item>
-//               <Menu.Item key="9" icon={<FileOutlined />}>
-//                 <Link to="/forum">Forum</Link>
-//               </Menu.Item>
-//               <Menu.Item key="5" icon={<FileOutlined />}>
-//                 <Link to="/news">Breaking News</Link>
-//               </Menu.Item>
-//             </Menu>
-//           </Sider>
-//           <Layout className="site-layout">
-//             <Header className="site-layout-background" style={{ padding: 0, textAlign: 'center', color: "white" }}> this</Header>
-//             <Content style={{ margin: '0 16px' }}>
-//               <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-//                 <Switch>
-//                   <Route exact path="/" component={HomePage} />
-//                   <Route path="/aboutMe" component={AboutMe} />
-//                   <Route path="/forum" component={Forum} />
-//                   <Route path="/news" component={News} />
-
-//                 </Switch>            </div>
-//             </Content>
-//             <Footer style={{ textAlign: 'center' }}>This is the website designed by the great Vincent Kouoï</Footer>
-//           </Layout>
-//         </Layout>
-//       </Router>
-//     );
-//   }
-// }
-
-// export default App

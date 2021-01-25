@@ -1,37 +1,84 @@
-import React, { Component, Fragment } from "react"
-import quizdata from './data'
-// import Answer from './Answer'
+import React, { useState } from 'react';
+import avatar from '../pictures/avatar-gratuit.png'
 
-class Quiz extends Component {
+export default function Quiz() {
+    const questions = [
+        {
+            questionText: 'What is the capital of France?',
+            answerOptions: [
+                { answerText: 'New York', isCorrect: false },
+                { answerText: 'London', isCorrect: false },
+                { answerText: 'Paris', isCorrect: true },
+                { answerText: 'Dublin', isCorrect: false },
+            ],
+        },
+        {
+            questionText: 'Who is CEO of Tesla?',
+            answerOptions: [
+                { answerText: 'Jeff Bezos', isCorrect: false },
+                { answerText: 'Elon Musk', isCorrect: true },
+                { answerText: 'Bill Gates', isCorrect: false },
+                { answerText: 'Tony Stark', isCorrect: false },
+            ],
+        },
+        {
+            questionText: 'The iPhone was created by which company?',
+            answerOptions: [
+                { answerText: 'Apple', isCorrect: true },
+                { answerText: 'Intel', isCorrect: false },
+                { answerText: 'Amazon', isCorrect: false },
+                { answerText: 'Microsoft', isCorrect: false },
+            ],
+        },
+        {
+            questionText: 'How many Harry Potter books are there?',
+            answerOptions: [
+                { answerText: '1', isCorrect: false },
+                { answerText: '4', isCorrect: false },
+                { answerText: '6', isCorrect: false },
+                { answerText: '7', isCorrect: true },
+            ],
+        },
+    ];
 
-    state = {
-        dataQuestion: []
-    }
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [showScore, setShowScore] = useState(false);
+    const [score, setScore] = useState(0);
 
-    setStatefunction = () => {
-        this.setState({
-            dataQuestion: quizdata
-        })
-    }
+    const handleAnswerOptionClick = (isCorrect) => {
+        if (isCorrect) {
+            setScore(score + 1);
+        }
 
-    componentDidMount() {
-        this.setStatefunction();
-    }
-
-    render() {
-        return (
-            <Fragment>
-                {
-                    this.state.dataQuestion.map(data => {
-                        console.log(data)
-                        return <div key={data.id} className="card">
-                            <h2> {data.quiz}</h2>
-                            {/* <Answer key={data.id} rightAnswer={data.rightAnswer} answer={data.FindAnwser} /> */}
+        const nextQuestion = currentQuestion + 1;
+        if (nextQuestion < questions.length) {
+            setCurrentQuestion(nextQuestion);
+        } else {
+            setShowScore(true);
+        }
+    };
+    return (
+        <div className='app'>
+            {showScore ? (
+                <div className='score-section'>
+                    You scored {score} out of {questions.length}
+                    <img src={avatar} style={{ width: 40, height: 40 }} alt="logo" />
+                </div>
+            ) : (
+                    <>
+                        <div className='question-section'>
+                            <div className='question-count'>
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
                         </div>
-                    })
-                }
-            </Fragment>
-        )
-    }
+                        <div className='answer-section'>
+                            {questions[currentQuestion].answerOptions.map((answerOption) => (
+                                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                            ))}
+                        </div>
+                    </>
+                )}
+        </div>
+    );
 }
-export default Quiz
