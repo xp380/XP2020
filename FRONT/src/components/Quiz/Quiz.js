@@ -1,42 +1,75 @@
 import React, { useState } from 'react';
-import avatar from '../pictures/avatar-gratuit.png'
+import Shamir from './Answers/Sérieuse.jpeg'
+import Hilda from './Answers/Immature.png'
+import Hawkeye from './Answers/Mature.jpeg'
+import Sonya from './Answers/Fatale.jpeg'
+
+import Cat from './Answers/Cat.jpeg'
+import Nurse from './Answers/Nurse.jpeg'
+import nemesis from './Answers/nemesis.png'
+import Clown from './Answers/Clown.jpeg'
+
+
+import Rick from './Answers/RaM.jpeg'
 
 export default function Quiz() {
     const questions = [
         {
-            questionText: 'What is the capital of France?',
+            questionText: 'Quel est le premier jeu de fire emblem ?',
             answerOptions: [
-                { answerText: 'New York', isCorrect: false },
-                { answerText: 'London', isCorrect: false },
-                { answerText: 'Paris', isCorrect: true },
-                { answerText: 'Dublin', isCorrect: false },
+                { answerText: 'Shadow Dragon & the Blade of Light', isCorrect: true },
+                { answerText: 'Three Houses', isCorrect: false },
+                { answerText: 'Sacred Stones', isCorrect: false },
+                {
+                    answerText: 'Path of Radiance'
+                    // <img src={avatar} style={{ width: 40, height: 40 }} alt="logo" />
+                    , isCorrect: false
+                },
             ],
         },
         {
-            questionText: 'Who is CEO of Tesla?',
+            questionText: 'Qui est le créteur de ce site web ?',
             answerOptions: [
                 { answerText: 'Jeff Bezos', isCorrect: false },
-                { answerText: 'Elon Musk', isCorrect: true },
+                { answerText: 'Vincent Kouoï', isCorrect: true },
                 { answerText: 'Bill Gates', isCorrect: false },
                 { answerText: 'Tony Stark', isCorrect: false },
             ],
         },
         {
-            questionText: 'The iPhone was created by which company?',
+            questionText: 'Quelle crise frappe en ce moment?',
             answerOptions: [
-                { answerText: 'Apple', isCorrect: true },
-                { answerText: 'Intel', isCorrect: false },
-                { answerText: 'Amazon', isCorrect: false },
-                { answerText: 'Microsoft', isCorrect: false },
+                { answerText: 'Covid 19', isCorrect: true },
+                { answerText: 'Ebola', isCorrect: false },
+                { answerText: 'Crise économique', isCorrect: false },
+                { answerText: 'Sida', isCorrect: false },
             ],
         },
         {
-            questionText: 'How many Harry Potter books are there?',
+            questionText: <img src={Rick} style={{ width: 500, height: 400 }} alt="logo" />,
             answerOptions: [
-                { answerText: '1', isCorrect: false },
-                { answerText: '4', isCorrect: false },
-                { answerText: '6', isCorrect: false },
-                { answerText: '7', isCorrect: true },
+                { answerText: 'Rick and Morty', isCorrect: true },
+                { answerText: 'Breaking Bad', isCorrect: false },
+                { answerText: 'Shrek', isCorrect: false },
+                { answerText: 'Mortal Kombat', isCorrect: false },
+            ],
+        },
+        {
+            questionText: 'Qui fait le plus peur ?',
+            answerOptions: [
+                { answerText: <img src={Cat} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: true },
+                { answerText: <img src={Nurse} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+                { answerText: <img src={nemesis} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+                { answerText: <img src={Clown} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+            ],
+        },
+        {
+            questionText: 'Qui est le plus mature ?',
+            answerOptions: [
+                { answerText: <img src={Hilda} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+                { answerText: <img src={Shamir} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+                { answerText: <img src={Sonya} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: false },
+                { answerText: <img src={Hawkeye} style={{ width: 400, height: 400 }} alt="logo" />, isCorrect: true },
             ],
         },
     ];
@@ -62,7 +95,6 @@ export default function Quiz() {
             {showScore ? (
                 <div className='score-section'>
                     You scored {score} out of {questions.length}
-                    <img src={avatar} style={{ width: 40, height: 40 }} alt="logo" />
                 </div>
             ) : (
                     <>

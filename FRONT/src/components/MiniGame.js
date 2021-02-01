@@ -7,7 +7,7 @@ function MyGame() {
     const { t } = useTranslation('traduction');
     return (
         <>
-            <p>{t("Game")}</p>
+            <p style={{fontWeight: 'bolder '}}>{t("Game")}</p>
         </>
     )
 }
