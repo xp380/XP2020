@@ -14,6 +14,8 @@ import Movies from './components/Movies'
 import Join from './components/Socket/Join/Join'
 import Chat from './components/Socket/Chat/Chat'
 import Time from './components/Time'
+import Login from './components/Login';
+
 
 import english from './components/pictures/english.png'
 import france from './components/pictures/france.png'
@@ -26,10 +28,8 @@ const { Header, Content, Footer, Sider } = Layout;
 function DashBoard() {
   const [collapsed, setCollapsed] = useState(false)
   const [useTime] = useState(new Date())
-  // const onCollapse = collapsed => {
-  //   console.log(collapsed);
-  //   setCollapsed({ collapsed });
-  // };
+  const [token, setToken] = useState();
+
 
   const { t, i18n } = useTranslation('Accueil');
 
@@ -41,6 +41,9 @@ function DashBoard() {
     i18n.changeLanguage("fr");
   }
 
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
