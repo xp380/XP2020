@@ -8,14 +8,12 @@ import axios from 'axios';
 import HomePage from './components/HomePage'
 import AboutMe from './components/AboutMe';
 import News from './components/News'
-import Contact from './components/Contact'
+// import Contact from './components/Contact'
 import MiniGame from './components/MiniGame'
 import Movies from './components/Movies'
-// import Join from './components/Socket/Join/Join'
-// import Chat from './components/Socket/Chat/Chat'
 import Time from './components/Time'
 import Login from './components/Login';
-import Comment from './components/Comment';
+import Contact from './components/Comment';
 import Data from './components/Users';
 
 import PrivateRoute from './components/Utils/PrivateRoute'
@@ -83,9 +81,9 @@ function DashBoard() {
             <Menu.Item key="4" icon={<FileOutlined />}>
               <Link to="/news">{t('News')}</Link>
             </Menu.Item>
-            <Menu.Item key="5" icon={<FileOutlined />}>
+            {/* <Menu.Item key="5" icon={<FileOutlined />}>
               <Link to="/contact">{t('Contact')}</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="6" icon={<GiftOutlined />}>
               <Link to="/minigame">{t('Game')}</Link>
             </Menu.Item>
@@ -102,13 +100,13 @@ function DashBoard() {
               <Link to="/login">Login</Link>
             </Menu.Item>
             <Menu.Item key="11" icon={<GiftOutlined />}>
-              <Link to="/comment">Commentaires</Link>
+              <Link to="/contact">Contact</Link>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0, textAlign: 'right', color: "white" }}>
-            <p style={{ padding: 0, textAlign: 'left' }}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p>
+            {/* <p style={{ padding: 0, textAlign: 'left' }}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p> */}
             <button onClick={changeToEnglish}><img src={english} style={{ width: 40, height: 40 }} alt="logo" /></button>
             <button onClick={changeToFrench}><img src={france} style={{ width: 40, height: 40 }} alt="logo" /></button>
           </Header>
@@ -118,19 +116,22 @@ function DashBoard() {
                 <Route exact path="/" component={HomePage} />
                 <PrivateRoute path="/aboutMe" component={AboutMe} />
                 <PrivateRoute path="/news" component={News} />
-                <PrivateRoute path="/contact" component={Contact} />
+                {/* <PrivateRoute path="/contact" component={Contact} /> */}
                 <PrivateRoute path="/minigame" component={MiniGame} />
                 <PrivateRoute path="/movies" component={Movies} />
                 <PrivateRoute path="/mydatabase" component={Data} />
                 {/* <PrivateRoute path="/chat" component={Chat} /> */}
                 <PublicRoute path='/login' component={Login} />
-                <PrivateRoute path='/comment' component={Comment} />
+                <PrivateRoute path='/contact' component={Contact} />
 
               </Switch>
               <Time />
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center', fontWeight: 'bold' }}>XP3000 designed by Vincent Kouoï</Footer>
+          <Footer style={{ textAlign: 'center', fontWeight: 'bold' }}>
+            XP3000 designed by Vincent Kouoï
+            <p style={{ padding: 0, textAlign: 'left' }}>{useTime.toLocaleDateString()} {useTime.toLocaleTimeString()}</p>
+          </Footer>
         </Layout>
       </Layout>
     </Router>
