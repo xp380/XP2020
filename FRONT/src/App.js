@@ -1,9 +1,9 @@
-import React, { useState, Suspense } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { Layout, Menu } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, GiftOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
-
+import axios from 'axios';
 
 import HomePage from './components/HomePage'
 import AboutMe from './components/AboutMe';
@@ -16,6 +16,10 @@ import Chat from './components/Socket/Chat/Chat'
 import Time from './components/Time'
 import Login from './components/Login';
 
+import PrivateRoute from './components/Utils/PrivateRoute'
+import PublicRoute from './components/Utils/PublicRoute'
+import { getToken, removeUserSession, setUserSession } from './components//Utils/Common';
+
 
 import english from './components/pictures/english.png'
 import france from './components/pictures/france.png'
@@ -26,9 +30,9 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 function DashBoard() {
+  const [authLoading, setAuthLoading] = useState(true);
   const [collapsed, setCollapsed] = useState(false)
   const [useTime] = useState(new Date())
-  const [token, setToken] = useState();
 
 
   const { t, i18n } = useTranslation('Accueil');
@@ -41,9 +45,25 @@ function DashBoard() {
     i18n.changeLanguage("fr");
   }
 
-  if(!token) {
-    return <Login setToken={setToken} />
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      return;
+    }
+
+    axios.get(`http://localhost:4000/verifyToken?token=${token}`).then(response => {
+      setUserSession(response.data.token, response.data.user);
+      setAuthLoading(false);
+    }).catch(error => {
+      removeUserSession();
+      setAuthLoading(false);
+    });
+  }, []);
+
+  if (authLoading && getToken()) {
+    return <div className="content">Checking Authentication...</div>
   }
+
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
@@ -76,6 +96,9 @@ function DashBoard() {
             <Menu.Item key="9" icon={<GiftOutlined />}>
               <Link to="/chat">Chat</Link>
             </Menu.Item>
+            <Menu.Item key="10" icon={<GiftOutlined />}>
+              <Link to="/login">Login</Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -88,13 +111,14 @@ function DashBoard() {
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/aboutMe" component={AboutMe} />
-                <Route path="/news" component={News} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/minigame" component={MiniGame} />
-                <Route path="/movies" component={Movies} />
-                <Route path="/join" component={Join} />
-                <Route path="/chat" component={Chat} />
+                <PrivateRoute path="/aboutMe" component={AboutMe} />
+                <PrivateRoute path="/news" component={News} />
+                <PrivateRoute path="/contact" component={Contact} />
+                <PrivateRoute path="/minigame" component={MiniGame} />
+                <PrivateRoute path="/movies" component={Movies} />
+                <PrivateRoute path="/join" component={Join} />
+                <PrivateRoute path="/chat" component={Chat} />
+                <PublicRoute path='/login' component={Login} />
               </Switch>
               <Time />
             </div>

@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import { Tabs, Carousel, Timeline } from 'antd';
 import { useTranslation } from "react-i18next";
+import { getUser, removeUserSession } from './Utils/Common';
+
 
 import avatar from './pictures/avatar-gratuit.png'
 
@@ -80,8 +82,15 @@ function Welcome() {
     </>
   );
 }
-export default function AboutMe() {
+export default function AboutMe(props) {
+
+  // handle click event of logout button
+  const handleLogout = () => {
+    removeUserSession();
+    props.history.push('/login');
+  }
   return <Suspense fallback="Chargement ...">
+    <input type="button" onClick={handleLogout} value="Logout" />
     <Welcome />
   </Suspense>
 }
