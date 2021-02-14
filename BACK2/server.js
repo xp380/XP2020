@@ -1,30 +1,54 @@
 require('dotenv').config();
 
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
+let express = require('express');
+let mongoose = require('mongoose');
+let cors = require('cors');
+let bodyParser = require('body-parser');
 const utils = require('./utils');
+const jwt = require('jsonwebtoken');
+let database = require('./database/db');
+
+
+const userContact = require('../BACK2/routes/comment')
+
+mongoose.Promise = global.Promise;
+mongoose.connect(database.db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Database connected sucessfully !')
+},
+    error => {
+        console.log('Database could not be connected : ' + error)
+    }
+)
 
 const app = express();
-const port = process.env.PORT || 4000;
 
-// static user details
 const userData = {
-    userId: "011010",
-    password: "tseyang",
-    name: "Vincent",
-    username: "dryes",
+    userId: "789789",
+    password: "cbon",
+    name: "Clue Mediator",
+    username: "cmoi",
     isAdmin: true
 };
 
-// enable CORS
-app.use(cors());
-// parse application/json
 app.use(bodyParser.json());
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(cors());
+app.use('/login', (req, res) => {
+    res.send({
+        token: 'test123'
+    });
+});
+app.use('/contacts', userContact)
 
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+    console.log('Connected to port ' + port)
+})
 
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -115,6 +139,8 @@ app.get('/verifyToken', function (req, res) {
     });
 });
 
-app.listen(port, () => {
-    console.log('Server started on: ' + port);
+app.use(function (err, req, res, next) {
+    console.error(err.message);
+    if (!err.statusCode) err.statusCode = 500;
+    res.status(err.statusCode).send(err.message);
 });

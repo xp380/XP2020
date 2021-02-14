@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setUserSession } from './Utils/Common';
+import './Login.css';
+import { Alert, Form } from 'antd'
+
 
 function Login(props) {
   const [loading, setLoading] = useState(false);
@@ -24,18 +27,22 @@ function Login(props) {
   }
 
   return (
-    <div>
-      Login<br /><br />
-      <div>
-        Username<br />
-        <input type="text" {...username} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Password<br />
-        <input type="password" {...password} autoComplete="new-password" />
-      </div>
-      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+
+    <div style={{ textAlign: 'center', marginTop: '100px' }}>
+      <Form style={{ border: '2px solid blue' }}>
+        <Alert message="Si vous souhaitez accéder aux autres onglets, connectez vous d'abord" type="info" />
+        Login<br /><br />
+        <div>
+          Username<br />
+          <input type="text" {...username} autoComplete="new-password" />
+        </div>
+        <div style={{ marginTop: 10 }}>
+          Password<br />
+          <input type="password" {...password} autoComplete="new-password" />
+        </div>
+        {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+        <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      </Form>
     </div>
   );
 }

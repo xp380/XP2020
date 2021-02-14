@@ -11,14 +11,16 @@ import News from './components/News'
 import Contact from './components/Contact'
 import MiniGame from './components/MiniGame'
 import Movies from './components/Movies'
-import Join from './components/Socket/Join/Join'
-import Chat from './components/Socket/Chat/Chat'
+// import Join from './components/Socket/Join/Join'
+// import Chat from './components/Socket/Chat/Chat'
 import Time from './components/Time'
 import Login from './components/Login';
+import Comment from './components/Comment';
+import Data from './components/Users';
 
 import PrivateRoute from './components/Utils/PrivateRoute'
 import PublicRoute from './components/Utils/PublicRoute'
-import { getToken, removeUserSession, setUserSession } from './components//Utils/Common';
+import { getToken, removeUserSession, setUserSession } from './components/Utils/Common';
 
 
 import english from './components/pictures/english.png'
@@ -91,13 +93,16 @@ function DashBoard() {
               <Link to="/movies">Films</Link>
             </Menu.Item>
             <Menu.Item key="8" icon={<GiftOutlined />}>
-              <Link to="/join">Join</Link>
+              <Link to="/mydatabase">Data</Link>
             </Menu.Item>
-            <Menu.Item key="9" icon={<GiftOutlined />}>
+            {/* <Menu.Item key="9" icon={<GiftOutlined />}>
               <Link to="/chat">Chat</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="10" icon={<GiftOutlined />}>
               <Link to="/login">Login</Link>
+            </Menu.Item>
+            <Menu.Item key="11" icon={<GiftOutlined />}>
+              <Link to="/comment">Commentaires</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -116,9 +121,11 @@ function DashBoard() {
                 <PrivateRoute path="/contact" component={Contact} />
                 <PrivateRoute path="/minigame" component={MiniGame} />
                 <PrivateRoute path="/movies" component={Movies} />
-                <PrivateRoute path="/join" component={Join} />
-                <PrivateRoute path="/chat" component={Chat} />
+                <PrivateRoute path="/mydatabase" component={Data} />
+                {/* <PrivateRoute path="/chat" component={Chat} /> */}
                 <PublicRoute path='/login' component={Login} />
+                <PrivateRoute path='/comment' component={Comment} />
+
               </Switch>
               <Time />
             </div>
