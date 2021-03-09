@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { Tabs, Carousel, Timeline } from 'antd';
 import { useTranslation } from "react-i18next";
-import { getUser, removeUserSession } from './Utils/Common';
+import { removeUserSession } from './Utils/Common';
 
 
 import avatar from './pictures/avatar-gratuit.png'

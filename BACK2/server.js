@@ -27,9 +27,9 @@ const app = express();
 
 const userData = {
     userId: "789789",
-    password: "cbon",
+    password: "vincent",
     name: "Clue Mediator",
-    username: "cmoi",
+    username: "dryes",
     isAdmin: true
 };
 

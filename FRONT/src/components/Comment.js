@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { DatePicker } from "antd";
 import moment from 'moment';
-
+import { NotificationManager } from 'react-notifications';
 
 export default class Comment extends Component {
     constructor(props) {
@@ -57,11 +57,12 @@ export default class Comment extends Component {
             date: this.state.date,
         };
 
-        axios.post('http://localhost:4000/contacts/create', userObject)
+        axios
+            .post('http://localhost:4000/contacts/create', userObject)
             .then((res) => {
-                console.log(res.data)
+                NotificationManager.success('Succès, Message envoyé', 'Successful!', 2000);
             }).catch((error) => {
-                console.log(error)
+                NotificationManager.error('Erreur, message non envoyé', 'Error!', 500);
             });
 
     }
@@ -75,24 +76,24 @@ export default class Comment extends Component {
                         <h3> Commentaires </h3>
                         <div className="form-group">
                             <span style={{ display: 'block', overflow: 'hidden', padding: '5px 4px 3px 6px' }}>
-                                <input type="text" value={this.state.lastName} onChange={this.onChangeUserLastName} placeholder={"Nom"} className="form-control" style={{ width: '300px' }} required />
+                                <input type="text" value={this.state.lastName} onChange={this.onChangeUserLastName} placeholder={"Nom"} className="form-control" style={{ width: '300px' }}  />
                             </span>
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.firstName} onChange={this.onChangeUserFirstName} placeholder={"Prénom"} className="form-control" style={{ width: '300px' }} required />
+                            <input type="text" value={this.state.firstName} onChange={this.onChangeUserFirstName} placeholder={"Prénom"} className="form-control" style={{ width: '300px' }}  />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.email} onChange={this.onChangeUserMail} placeholder={"Email"} className="form-control" style={{ width: '300px' }} required />
+                            <input type="text" value={this.state.email} onChange={this.onChangeUserMail} placeholder={"Email"} className="form-control" style={{ width: '300px' }}  />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.address} onChange={this.onChangeUserAdresse} placeholder={"Adresse"} className="form-control" style={{ width: '300px' }} required />
+                            <input type="text" value={this.state.address} onChange={this.onChangeUserAdresse} placeholder={"Adresse"} className="form-control" style={{ width: '300px' }}  />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.comment} onChange={this.onChangeUserComments} placeholder={"Commentaires"} className="form-control" style={{ width: '300px' }} required />
+                            <input type="text" value={this.state.comment} onChange={this.onChangeUserComments} placeholder={"Commentaires"} className="form-control" style={{ width: '300px' }}  />
                         </div>
                         <br></br>
                         <div className="form-group" hidden>

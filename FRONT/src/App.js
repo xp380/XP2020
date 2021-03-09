@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, GiftOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 
 import HomePage from './components/HomePage'
 import AboutMe from './components/AboutMe';
@@ -96,9 +98,9 @@ function DashBoard() {
             {/* <Menu.Item key="9" icon={<GiftOutlined />}>
               <Link to="/chat">Chat</Link>
             </Menu.Item> */}
-            <Menu.Item key="10" icon={<GiftOutlined />}>
+            {/* <Menu.Item key="10" icon={<GiftOutlined />}>
               <Link to="/login">Login</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="11" icon={<GiftOutlined />}>
               <Link to="/contact">Contact</Link>
             </Menu.Item>
@@ -134,7 +136,9 @@ function DashBoard() {
           </Footer>
         </Layout>
       </Layout>
+      <NotificationContainer />
     </Router>
+    
   );
 }
 

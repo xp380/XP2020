@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 let contactSchema = new Schema({
 
     lastName: {
-        type: String
+        type: String,
+        required: true
     },
     firstName: {
-        type: String
+        type: String,
+        required: true
     },
     email: {
         type: String
