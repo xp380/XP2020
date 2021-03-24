@@ -23,6 +23,9 @@ class DataTable extends Component {
                     {this.props.obj.comment}
                 </td>
                 <td>
+                    {this.props.obj.rating}
+                </td>
+                <td>
                     {this.props.obj.date}
                 </td>
             </tr>

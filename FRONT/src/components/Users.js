@@ -39,6 +39,7 @@ export default class Users extends Component {
                                 <td>Mail</td>
                                 <td>Adresse</td>
                                 <td>Commentaire</td>
+                                <td>Avis</td>
                                 <td>DATE</td>
 
                             </tr>

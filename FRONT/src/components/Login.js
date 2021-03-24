@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setUserSession } from './Utils/Common';
- 
+import { Button } from 'antd'
+
+import PoweroffOutlined from '@ant-design/icons'
 
 function Login(props) {
     const [loading, setLoading] = useState(false);
@@ -28,18 +30,23 @@ function Login(props) {
 
     return (
         <div>
-            <form onSubmit={handleLogin} style={{marginLeft:'400px', padding: '1em', border: '2px solid blue', marginTop: '2rem', width: '250px', height: '350px' }}>
-            Login<br /><br />
+            <form onSubmit={handleLogin} style={{marginLeft:'500px', padding: '1em', border: '2px solid blue', marginTop: '2rem', width: '250px', height: '350px' }}>
+            <p style={{textAlign: 'center', fontWeight: 'bolder', }}>Connexion</p>
+            <br />
+            <br />
             <div>
-                Username<br />
-                <input type="text" {...username} autoComplete="new-password" />
+                <p style={{ textAlign: 'center'}}>Nom d'utilisateur</p>
+            <br />
+                <input style={{ marginLeft: 20}} type="text" {...username} autoComplete="new-password" />
             </div>
             <div style={{ marginTop: 10 }}>
-                Password<br />
-                <input type="password" {...password} autoComplete="new-password" />
+                <p style={{ textAlign: 'center'}}>Mot de Passe</p>
+            <br />
+                <input style={{marginLeft: 20}} type="password" {...password} autoComplete="new-password" />
             </div>
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-            <input type="submit" value={loading ? 'Loading...' : 'Login'}  disabled={loading} /><br />
+            <input style={{ marginLeft: 70,}} type="submit" value={loading ? 'Loading...' : 'Envoyer'}  disabled={loading} /><br />
+            {/* <Button type= "primary" icon={<PoweroffOutlined />} /> */}
             </form>
         </div>
     );

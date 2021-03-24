@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { DatePicker } from "antd";
+import { DatePicker, } from "antd";
 import moment from 'moment';
 import { NotificationManager } from 'react-notifications';
 
@@ -13,6 +13,7 @@ export default class Comment extends Component {
         this.onChangeUserAdresse = this.onChangeUserAdresse.bind(this);
         this.onChangeUserComments = this.onChangeUserComments.bind(this);
         this.onChangeUserDate = this.onChangeUserDate.bind(this);
+        this.onChangeUserRating = this.onChangeUserRating.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -23,6 +24,7 @@ export default class Comment extends Component {
             address: '',
             comment: '',
             date: new Date().toLocaleDateString(),
+            rating: "5"
         }
     }
 
@@ -46,6 +48,10 @@ export default class Comment extends Component {
         this.setState({ date: date })
     }
 
+    onChangeUserRating(e) {
+        this.setState({ rating: e.target.value })
+    }
+
     onSubmit(e) {
         e.preventDefault()
         const userObject = {
@@ -54,6 +60,7 @@ export default class Comment extends Component {
             email: this.state.email,
             address: this.state.address,
             comment: this.state.comment,
+            rating: this.state.rating,
             date: this.state.date,
         };
 
@@ -76,24 +83,24 @@ export default class Comment extends Component {
                         <h3> Commentaires </h3>
                         <div className="form-group">
                             <span style={{ display: 'block', overflow: 'hidden', padding: '5px 4px 3px 6px' }}>
-                                <input type="text" value={this.state.lastName} onChange={this.onChangeUserLastName} placeholder={"Nom"} className="form-control" style={{ width: '300px' }}  />
+                                <input type="text" value={this.state.lastName} onChange={this.onChangeUserLastName} placeholder={"Nom"} className="form-control" style={{ width: '300px' }} />
                             </span>
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.firstName} onChange={this.onChangeUserFirstName} placeholder={"Prénom"} className="form-control" style={{ width: '300px' }}  />
+                            <input type="text" value={this.state.firstName} onChange={this.onChangeUserFirstName} placeholder={"Prénom"} className="form-control" style={{ width: '300px' }} />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.email} onChange={this.onChangeUserMail} placeholder={"Email"} className="form-control" style={{ width: '300px' }}  />
+                            <input type="text" value={this.state.email} onChange={this.onChangeUserMail} placeholder={"Email"} className="form-control" style={{ width: '300px' }} />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.address} onChange={this.onChangeUserAdresse} placeholder={"Adresse"} className="form-control" style={{ width: '300px' }}  />
+                            <input type="text" value={this.state.address} onChange={this.onChangeUserAdresse} placeholder={"Adresse"} className="form-control" style={{ width: '300px' }} />
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <input type="text" value={this.state.comment} onChange={this.onChangeUserComments} placeholder={"Commentaires"} className="form-control" style={{ width: '300px' }}  />
+                            <input type="text" value={this.state.comment} onChange={this.onChangeUserComments} placeholder={"Commentaires"} className="form-control" style={{ width: '300px' }} />
                         </div>
                         <br></br>
                         <div className="form-group" hidden>
@@ -105,6 +112,18 @@ export default class Comment extends Component {
                                 format="YYYY-MM-DD"
                                 placeholder="Date"
                             />
+                        </div>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value={this.state.rating} onChange={this.onChangeUserRating} />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value={this.state.rating} onChange={this.onChangeUserRating} />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value={this.state.rating} onChange={this.onChangeUserRating} />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value={this.state.rating} onChange={this.onChangeUserRating} />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value={this.state.rating} onChange={this.onChangeUserRating} />
+                            <label for="star1" title="text">1 star</label>
                         </div>
                         <div>
                             <input type="submit" value="Send" className="btn btn-success btn-block" style={{ width: '100px' }} />

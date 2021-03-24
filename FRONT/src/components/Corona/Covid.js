@@ -1,44 +1,102 @@
-import React, { useState, useEffect } from 'react'
-import axios from "axios"
-import { Statistic, Row, Col } from 'antd'
-import StatCovid from "./StatCovid"
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
+import axios from "axios";
 
-export default function Covid() {
-  const [data, setData] = useState({ allDataByDepartement: [] })
+const Covid = () => {
+  const [chartData, setChartData] = useState({});
+
+
+  const chart = () => {
+    let packDeces = [];
+    let packGueris = [];
+    let packDate = [];
+    let packHospitalises = [];
+    let packReanimation = [];
+
+    axios
+      .get("https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=Paris")
+      .then(res => {
+        console.log(res);
+        for (const dataObj of res.data.allDataByDepartement) {
+          packDeces.push(parseInt(dataObj.deces));
+          packGueris.push(parseInt(dataObj.gueris));
+          packHospitalises.push(parseInt(dataObj.hospitalises));
+          packReanimation.push(parseInt(dataObj.reanimation));
+
+          packDate.push(parseInt(dataObj.date));
+        }
+        setChartData({
+          labels: packDate,
+          datasets: [
+            {
+              label: "Nombre de décès",
+              data: packDeces,
+              backgroundColor: "yellow",
+              borderWidth: 4
+            },
+            {
+              label: "Nombre de guéris",
+              data: packGueris,
+              backgroundColor: "green",
+              borderWidth: 4
+            },
+            {
+              label: "Nombre d'hospitalisés",
+              data: packHospitalises,
+              backgroundColor: "red",
+              borderWidth: 4
+            },
+            {
+              label: "Nombre de réanimations",
+              data: packReanimation,
+              backgroundColor: "blue",
+              borderWidth: 4
+            }
+          ]
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(packDeces, packDate);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=Paris");
-      setData(result.data);
-    };
-    fetchData();
-  }, [data]);
+    chart();
+  }, []);
   return (
-    <>
-      <StatCovid />
-      statistiques du Covid à Paris
-      {data.allDataByDepartement.map(item => (
-        <Row gutter={13}>
-          <Col span={4}>
-            <Statistic title="Date" value={item.date} />
-          </Col>
-          <Col span={5}>
-            <Statistic title="Décès" value={item.deces} />
-          </Col>
-          <Col span={5}>
-            <Statistic title="Guéris" value={item.gueris} />
-          </Col>
-          <Col span={5}>
-            <Statistic title="Hospitalisés" value={item.hospitalises} />
-          </Col>
-          <Col span={5}>
-            <Statistic title="Réanimation" value={item.reanimation} />
-          </Col>
-        </Row>
-      ))}
-    </>
-  )
-}
-// https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=Paris
-// dc9894cd6eeb6308a58fc373453687f6a62f761a
-// https://api.waqi.info/feed/beijing/?token=dc9894cd6eeb6308a58fc373453687f6a62f761a 
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
+    <div className="App">
+      <div>
+        <Line
+          data={chartData}
+          options={{
+            responsive: false,
+            title: { text: "statistiques du Covid", display: true },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    autoSkip: false,
+                    beginAtZero: true
+                  },
+                  gridLines: {
+                    display: true
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  gridLines: {
+                    display: true
+                  },
+                }
+              ]
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Covid;

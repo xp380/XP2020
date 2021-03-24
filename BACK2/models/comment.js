@@ -23,6 +23,9 @@ let contactSchema = new Schema({
     date: {
         type: String
     },
+    rating: {
+        type: String
+    }
 }, {
     collection: 'contacts'
 })
